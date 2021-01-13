@@ -465,12 +465,15 @@ impl Scenario {
         let mut test_sequence = vec![];
         let mut test_state = HashMap::new();
 
+        println!("\n#### Test order for: {} ####", desc.id);
         for test_name in test_order {
+            println!("---{}",test_name);
             let test = manager.get_test_named(&test_name).expect("Unable to check out requested test from library");
             test_sequence.push(test.clone());
             test_state.insert(test_name.clone(), Rc::new(RefCell::new(TestState::Pending)));
             tests.insert(test_name, test);
         }
+        println!("######\n");
 
         Scenario {
             description: desc.clone(),
